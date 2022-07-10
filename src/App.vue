@@ -12,12 +12,14 @@
   --empty: #c4c4c4;
   --gray: #9d9d9d;
   --gray-light: #e7e7e7;
+  --input-background: #fdfdfd;
   --white: #ffffff;
 }
 
 * {
   box-sizing: border-box;
   margin: 0;
+  text-decoration: none;
 }
 
 #app {

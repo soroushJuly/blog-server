@@ -1,17 +1,23 @@
 <template>
-  <button class="btn" :class="'btn__' + color">
-    <span>
+  <component :is="tag" class="btn" :class="'btn__' + color" :to="to">
+    <span v-if="!$slots.default">
       {{ text }}
     </span>
-    <div class="btn__icon btn__icon--right">
+    <slot />
+    <div v-if="$slots['icon-right']" class="btn__icon btn__icon--right">
       <slot name="icon-right" />
     </div>
-  </button>
+  </component>
 </template>
 
 <script>
 export default {
+  name: "BaseButton",
   props: {
+    tag: {
+      type: String,
+      default: "button",
+    },
     text: {
       type: String,
       default: "",
@@ -19,6 +25,10 @@ export default {
     color: {
       type: String,
       default: "primary",
+    },
+    to: {
+      type: String,
+      default: null,
     },
   },
 };
@@ -43,6 +53,13 @@ export default {
   /* Blue */
   background: var(--blue);
   color: var(--white);
+}
+
+.btn__secondary {
+  /* Blue */
+  border: 1px solid var(--gray-light);
+  background: transparent;
+  color: var(--black);
 }
 
 .btn__primary:hover {

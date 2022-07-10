@@ -2,7 +2,7 @@
   <main class="page home">
     <header class="home__header">
       <BaseSearchBox />
-      <BaseButton text="Add new post">
+      <BaseButton tag="router-link" text="Add new post" to="/post">
         <template #icon-right>
           <BaseIcon name="add-circle" viewBox="0 0 22 22" />
         </template>
