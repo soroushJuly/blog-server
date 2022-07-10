@@ -1,18 +1,39 @@
 <template>
   <main class="page home">
-    <section>
+    <header class="home__header">
+      <div>input</div>
       <BaseButton text="Add new post" />
+    </header>
+    <section class="home__posts" id="posts">
+      <BaseCard />
+      <BaseCard />
+      <BaseCard />
+      <BaseCard />
+      <BaseCard />
+      <BaseCard />
     </section>
-    <section id="posts"></section>
   </main>
 </template>
 
 <script>
-// @ is an alias to /src
 import BaseButton from "@/components/base/BaseButton.vue";
+import BaseCard from "@/components/base/BaseCard.vue";
 
 export default {
   name: "HomeView",
-  components: { BaseButton },
+  components: { BaseButton, BaseCard },
 };
 </script>
+
+<style scoped>
+.home__header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 24px;
+}
+.home__posts {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+}
+</style>

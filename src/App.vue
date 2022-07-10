@@ -8,7 +8,14 @@
 :root {
   --blue: #4f73d0;
   --blue-dark: #224dba;
+  --empty: #c4c4c4;
+  --gray-light: #e7e7e7;
   --white: #ffffff;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
 }
 
 #app {
@@ -17,6 +24,12 @@
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
+  max-width: 1210px;
+  margin: auto;
+}
+
+.page {
+  padding: 100px;
 }
 
 nav {

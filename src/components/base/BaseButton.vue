@@ -36,6 +36,7 @@ export default {
   line-height: 16px;
   padding: 12px 16px;
 }
+
 .btn__primary {
   /* Blue */
   background: var(--blue);
