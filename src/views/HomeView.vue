@@ -9,12 +9,11 @@
       </BaseButton>
     </header>
     <section class="home__posts" id="posts">
-      <BaseCard />
-      <BaseCard />
-      <BaseCard />
-      <BaseCard />
-      <BaseCard />
-      <BaseCard />
+      <BaseCard
+        v-for="(post, index) in postsVisible"
+        :details="post"
+        :key="index"
+      />
     </section>
   </main>
 </template>
@@ -28,6 +27,24 @@ import BaseIcon from "@/components/base/BaseIcon.vue";
 export default {
   name: "HomeView",
   components: { BaseButton, BaseCard, BaseIcon, BaseSearchBox },
+  data() {
+    return {
+      posts: [],
+      page: 1,
+    };
+  },
+  computed: {
+    postsVisible() {
+      return this.posts.slice(0, this.page * 8);
+    },
+  },
+  mounted() {
+    this.axios
+      .get("http://localhost:3000/posts?_expand=user")
+      .then((response) => {
+        this.posts = response.data;
+      });
+  },
 };
 </script>
 
