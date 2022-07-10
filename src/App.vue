@@ -5,8 +5,14 @@
 </template>
 
 <style>
+:root {
+  --blue: #4f73d0;
+  --blue-dark: #224dba;
+  --white: #ffffff;
+}
+
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
+  font-family: "IBM Plex Sans", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;

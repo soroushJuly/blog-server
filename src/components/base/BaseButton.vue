@@ -29,15 +29,24 @@ export default {
   border-radius: 24px;
   box-shadow: 0px 3px 4px rgba(0, 0, 0, 0.08);
   cursor: pointer;
-}
-.btn__primary {
-  /* Blue */
-  background: #4f73d0;
-  color: #ffffff;
-  padding: 16px 12px;
 
+  font-style: normal;
   font-weight: 700;
   font-size: 14px;
   line-height: 16px;
+  padding: 12px 16px;
+}
+.btn__primary {
+  /* Blue */
+  background: var(--blue);
+  color: var(--white);
+}
+
+.btn__primary:hover {
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);
+}
+
+.btn__primary:active {
+  background: var(--blue-dark);
 }
 </style>
