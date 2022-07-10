@@ -1,8 +1,12 @@
 <template>
   <main class="page home">
     <header class="home__header">
-      <div>input</div>
-      <BaseButton text="Add new post" />
+      <BaseSearchBox />
+      <BaseButton text="Add new post">
+        <template #icon-right>
+          <BaseIcon name="add-circle" viewBox="0 0 22 22" />
+        </template>
+      </BaseButton>
     </header>
     <section class="home__posts" id="posts">
       <BaseCard />
@@ -17,11 +21,13 @@
 
 <script>
 import BaseButton from "@/components/base/BaseButton.vue";
+import BaseSearchBox from "@/components/base/BaseSearchBox.vue";
 import BaseCard from "@/components/base/BaseCard.vue";
+import BaseIcon from "@/components/base/BaseIcon.vue";
 
 export default {
   name: "HomeView",
-  components: { BaseButton, BaseCard },
+  components: { BaseButton, BaseCard, BaseIcon, BaseSearchBox },
 };
 </script>
 
@@ -34,6 +40,7 @@ export default {
 .home__posts {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 10px;
+  column-gap: 10px;
+  row-gap: 24px;
 }
 </style>

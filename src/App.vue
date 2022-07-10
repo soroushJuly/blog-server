@@ -6,9 +6,11 @@
 
 <style>
 :root {
+  --black: #2d2d2d;
   --blue: #4f73d0;
   --blue-dark: #224dba;
   --empty: #c4c4c4;
+  --gray: #9d9d9d;
   --gray-light: #e7e7e7;
   --white: #ffffff;
 }

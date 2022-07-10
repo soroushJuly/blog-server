@@ -3,7 +3,7 @@
     <span>
       {{ text }}
     </span>
-    <div class="btn__icon--right">
+    <div class="btn__icon btn__icon--right">
       <slot name="icon-right" />
     </div>
   </button>
@@ -26,6 +26,8 @@ export default {
 
 <style lang="css" scoped>
 .btn {
+  display: flex;
+  align-items: center;
   border-radius: 24px;
   box-shadow: 0px 3px 4px rgba(0, 0, 0, 0.08);
   cursor: pointer;
@@ -49,5 +51,11 @@ export default {
 
 .btn__primary:active {
   background: var(--blue-dark);
+}
+.btn__icon {
+  display: flex;
+}
+.btn__icon--right {
+  margin-left: 10px;
 }
 </style>
