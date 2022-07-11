@@ -18,12 +18,27 @@ export default new Vuex.Store({
     STORE_POSTS(state, payload) {
       state.posts = payload;
     },
+    STORE_NEW_POST(state, payload) {
+      state.posts.push(payload);
+    },
   },
   actions: {
     async getPosts({ commit }, q) {
       try {
-        const { data } = await api.get(POSTS, { params: { q } });
+        const { data } = await api.get(POSTS, {
+          params: { q, _expand: "user" },
+        });
         commit("STORE_POSTS", data);
+      } catch (error) {
+        console.log(error);
+      }
+    },
+    async createPost({ commit }, { payload }) {
+      try {
+        const { data } = await api.post(POSTS, payload);
+        commit("STORE_NEW_POST", data);
+        alert("Post id: " + data.id);
+        Promise.resolve();
       } catch (error) {
         console.log(error);
       }

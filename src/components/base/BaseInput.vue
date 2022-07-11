@@ -2,20 +2,38 @@
   <div class="input-container">
     <label v-if="label" :for="id" class="input__label">{{ label }}</label>
     <div class="input__content">
-      <input type="text" :id="id" />
-      <button v-if="mode === 'tags'" class="input__add">
+      <input
+        :value="value"
+        type="text"
+        :id="id"
+        v-on="$listeners"
+        @input="setValue($event.target.value)"
+      />
+      <button
+        v-if="mode === 'tags'"
+        class="input__add"
+        :class="{ 'input__add--active': value }"
+        @click.prevent="addTag(value)"
+      >
         <span>Add</span>
-        <BaseIcon name="add" viewBox="0 0 24 24" />
+        <BaseIcon name="add" viewBox="0 0 24 16" />
       </button>
+    </div>
+    <div class="input__tags">
+      <BaseBadge v-for="(tag, index) in tags" :key="index" :text="tag" />
     </div>
   </div>
 </template>
 
 <script>
 import BaseIcon from "@/components/base/BaseIcon.vue";
+import BaseBadge from "@/components/base/BaseBadge.vue";
 export default {
   name: "BaseInput",
-  components: { BaseIcon },
+  components: { BaseIcon, BaseBadge },
+  data() {
+    return {};
+  },
   props: {
     type: {
       type: String,
@@ -35,6 +53,28 @@ export default {
     label: {
       type: String,
       default: null,
+    },
+    value: {
+      type: String,
+      default: null,
+    },
+    tags: {
+      type: Array,
+      default: () => [],
+    },
+  },
+  methods: {
+    addTag() {
+      this.$emit("updateTags");
+      this.$emit("update", "");
+    },
+    setValue(val) {
+      if (this.mode === "tags") {
+        this.$emit("update", val);
+        return;
+      }
+      console.log(val);
+      this.$emit("update", val);
     },
   },
 };
@@ -80,15 +120,27 @@ export default {
   right: 1rem;
   top: 50%;
   transform: translate(0, -50%);
+  z-index: 10;
 
   background: transparent;
   font-weight: 700;
   font-size: 14px;
   line-height: 16px;
 
+  color: var(--gray-light);
+}
+.input__add--active {
   color: var(--blue);
 }
 .input__add > span {
   margin-right: 12px;
+}
+.input__tags {
+  display: flex;
+  flex-wrap: wrap;
+}
+.input__tags > * {
+  margin-top: 12px;
+  margin-right: 4px;
 }
 </style>

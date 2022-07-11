@@ -7,12 +7,30 @@
         </BaseButton>
         <h1 class="new-post__title">New post</h1>
       </div>
-      <BaseButton text="Publish post" />
+      <BaseButton text="Publish post" type="submit" form="postForm" />
     </section>
-    <form @submit.prevent="dd" action="">
-      <BaseInput label="Title" class="form__input" />
-      <BaseInput label="Description" class="form__input" />
-      <BaseInput label="Tags" mode="tags" class="form__input" />
+    <form id="postForm" @submit.prevent="submitForm">
+      <BaseInput
+        :value="title"
+        label="Title"
+        class="form__input"
+        @update="(val) => (title = val)"
+      />
+      <BaseInput
+        :value="description"
+        label="Description"
+        class="form__input"
+        @update="(val) => (description = val)"
+      />
+      <BaseInput
+        :value="tag"
+        :tags="tags"
+        label="Tags"
+        mode="tags"
+        class="form__input"
+        @update="(val) => (tag = val)"
+        @updateTags="tags.push(tag)"
+      />
     </form>
   </main>
 </template>
@@ -24,6 +42,32 @@ import BaseIcon from "@/components/base/BaseIcon.vue";
 
 export default {
   components: { BaseInput, BaseButton, BaseIcon },
+  data() {
+    return {
+      title: "",
+      description: "",
+      tag: "",
+      tags: [],
+    };
+  },
+  methods: {
+    submitForm() {
+      this.$store
+        .dispatch("createPost", {
+          payload: {
+            title: this.title,
+            description: this.description,
+            tags: this.tags,
+          },
+        })
+        .then(() => {
+          this.title = "";
+          this.description = "";
+          this.tag = "";
+          this.tags = [];
+        });
+    },
+  },
 };
 </script>
 

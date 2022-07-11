@@ -1,1 +1,1 @@
-export const POSTS = "/posts?_expand=user";
+export const POSTS = "/posts";
