@@ -1,7 +1,7 @@
 <template>
   <main class="page home">
     <header class="home__header">
-      <BaseSearchBox />
+      <BaseSearchBox @doSearch="searchPosts" />
       <BaseButton tag="router-link" text="Add new post" to="/post">
         <template #icon-right>
           <BaseIcon name="add-circle" viewBox="0 0 22 22" />
@@ -41,6 +41,11 @@ export default {
   },
   created() {
     this.$store.dispatch("getPosts");
+  },
+  methods: {
+    searchPosts(query) {
+      this.$store.dispatch("getPosts", query);
+    },
   },
 };
 </script>

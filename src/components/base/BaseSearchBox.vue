@@ -11,6 +11,7 @@
       :id="id"
       class="search"
       placeholder="Search"
+      @input="doSearch"
     />
   </div>
 </template>
@@ -23,6 +24,7 @@ export default {
   data() {
     return {
       value: "",
+      delay: null,
     };
   },
   props: {
@@ -33,6 +35,17 @@ export default {
     label: {
       type: String,
       default: null,
+    },
+  },
+  methods: {
+    doSearch() {
+      if (this.delay) {
+        clearTimeout(this.delay);
+      }
+      this.delay = setTimeout(() => {
+        this.$emit("doSearch", this.value);
+        this.delay = null;
+      }, 2000);
     },
   },
 };

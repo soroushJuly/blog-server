@@ -20,10 +20,13 @@ export default new Vuex.Store({
     },
   },
   actions: {
-    async getPosts({ commit }) {
-      await api.get(POSTS).then((response) => {
-        commit("STORE_POSTS", response.data);
-      });
+    async getPosts({ commit }, q) {
+      try {
+        const { data } = await api.get(POSTS, { params: { q } });
+        commit("STORE_POSTS", data);
+      } catch (error) {
+        console.log(error);
+      }
     },
   },
   modules: {},
