@@ -15,6 +15,7 @@
         :key="index"
       />
     </section>
+    <BaseButton text="More" to="/post" @click="page = page + 1" />
   </main>
 </template>
 
@@ -35,15 +36,11 @@ export default {
   },
   computed: {
     postsVisible() {
-      return this.posts.slice(0, this.page * 8);
+      return this.$store.getters.postsVisible(this.page);
     },
   },
-  mounted() {
-    this.axios
-      .get("http://localhost:3000/posts?_expand=user")
-      .then((response) => {
-        this.posts = response.data;
-      });
+  created() {
+    this.$store.dispatch("getPosts");
   },
 };
 </script>

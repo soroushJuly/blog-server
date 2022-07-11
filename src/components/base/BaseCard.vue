@@ -19,7 +19,7 @@
           v-if="details.user.avatar"
           :src="details.user.avatar"
           class="card__avatar"
-          alt="user-avatar"
+          alt="avatar"
         />
         <div v-else class="card__avatar" />
         <div class="card__author__text">
@@ -27,7 +27,7 @@
           <span class="card__author__date">{{ details.publishDate }}</span>
         </div>
       </div>
-      <div>
+      <div class="card__likes">
         <span>{{ details.likes }}</span>
         <BaseIcon viewBox="0 0 22 18" name="favorite-border" />
       </div>
@@ -126,6 +126,8 @@ export default {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+
+  margin-top: 4px;
 }
 .card__title {
   font-style: normal;
@@ -159,5 +161,10 @@ export default {
 }
 .card__tags::-webkit-scrollbar {
   display: none;
+}
+.card__likes {
+  display: flex;
+  align-items: center;
+  color: var(--gray);
 }
 </style>

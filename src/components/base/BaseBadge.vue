@@ -30,4 +30,8 @@ export default {
   border: 1px solid var(--gray-light);
   border-radius: 24px;
 }
+.badge:hover {
+  color: var(--black);
+  border: 1px solid var(--gray);
+}
 </style>

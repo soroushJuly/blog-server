@@ -1,5 +1,11 @@
 <template>
-  <component :is="tag" class="btn" :class="'btn__' + color" :to="to">
+  <component
+    :is="tag"
+    class="btn"
+    :class="'btn__' + color"
+    :to="to"
+    v-on="$listeners"
+  >
     <span v-if="!$slots.default">
       {{ text }}
     </span>
